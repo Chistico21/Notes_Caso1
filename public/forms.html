@@ -3,18 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Crear</title>
+  <title>Crear Nota</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="container">
     <h1 id="form-title">Crear Nota</h1>
     <form id="note-form">
-      <input type="text" id="title" placeholder="Title" maxlength="200" required>
-      <textarea id="content" placeholder="Content" required></textarea>
-      <input type="text" id="tags" placeholder="Tags (comma-separated)" maxlength="100">
-      <button type="submit">Guardar</button>
-      <a href="index.html"><button type="button">Volver</button></a>
+      <input type="text" id="title" placeholder="Título" maxlength="200" required>
+      <textarea id="content" placeholder="Contenido" required></textarea>
+      <input type="text" id="tags" placeholder="Etiquetas" maxlength="100">
+      <div class="button-group">
+        <button type="submit" class="button save-button">Guardar</button>
+        <a href="index.html" class="button cancel-button">Cancelar</a>
+      </div>
     </form>
   </div>
   <script src="app.js"></script>

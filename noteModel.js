@@ -1,14 +1,16 @@
-const { v4: uuidv4 } = require('uuid');
+const { v4: uuidv4 } = require('uuid');/*Libreria para generar IDS*/
 
 let notes = [];
 
-const createNote = (title, content, tags) => {
-    const note = {
+const createNote = (title, content, tags) => 
+    {
+    const note = 
+    {
         id: uuidv4(),
         title,
         content,
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(),/* Trabaja como sysdate*/
+        updatedAt: new Date(),/* Trabaja como sysdate*/
         tags: tags || []
     };
     notes.push(note);
@@ -19,9 +21,11 @@ const getNotes = () => notes;
 
 const getNoteById = (id) => notes.find(note => note.id === id);
 
-const updateNote = (id, title, content, tags) => {
+const updateNote = (id, title, content, tags) => 
+    {
     const note = getNoteById(id);
-    if (note) {
+    if (note) 
+        {
         note.title = title;
         note.content = content;
         note.tags = tags;
@@ -30,12 +34,14 @@ const updateNote = (id, title, content, tags) => {
     return note;
 };
 
-const deleteNote = (id) => {
+const deleteNote = (id) => 
+    {
     notes = notes.filter(note => note.id !== id);
     return notes;
 };
 
-module.exports = {
+module.exports = 
+{
     createNote,
     getNotes,
     getNoteById,

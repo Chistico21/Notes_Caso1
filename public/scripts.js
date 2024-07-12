@@ -1,22 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const contenedorNotas = document.getElementById('notesGrid'); /* Acá se mostrarán las notas*/
-    const botonCrearNota = document.getElementById('createNoteBtn');
+    const contenedorNotas = document.getElementById('notesGrid');
+    const botonCrearNota = document.querySelector('.create-button');
 
     const obtenerNotas = async () => {
         const respuesta = await fetch('/notes');
-        const notas = await respuesta.json(); /* Transforma a formato .json*/
+        const notas = await respuesta.json();
         renderizarNotas(notas);
     };
 
     const renderizarNotas = (notas) => {
         contenedorNotas.innerHTML = '';
         notas.forEach(nota => {
-            const contNota = document.createElement('div'); /* Contenedor de cada nota */
-            contNota.className = 'note';
-            /* Los resultados se mostrarán en el cuerpo de la nota
-                se llamará la interfaz de modificar en caso de querer modificar. se obtendrá el id de la nota seleccionada en el index
-                contNota se refiere al div donde se motrará la nota ya que es un contenedor
-            */
+            const contNota = document.createElement('div');
+            contNota.className = 'note-card';
             contNota.innerHTML = `
                 <h2>${nota.title}</h2>
                 <p>${nota.content.substring(0, 50)}...</p>
@@ -25,13 +21,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 <br>
                 <small>Modificado: ${new Date(nota.updatedAt).toLocaleString()}</small>
                 <br>
-                <a href="modificar.html?id=${nota.id}" backgroud-color="blue"><button>Modificar</button></a>
-                <button class="eliminar-btn" data-id="${nota.id}">Eliminar</button>
+                <div class="button-container">
+                    <a href="modificar.html?id=${nota.id}" class="button edit-button">Modificar</a>
+                    <button class="button delete-button" data-id="${nota.id}">Eliminar</button>
+                </div>
             `;
-            contenedorNotas.appendChild(contNota); /* Añade la nota registrada al contenedor */
+            contenedorNotas.appendChild(contNota);
         });
 
-        const botonesEliminar = document.querySelectorAll('.eliminar-btn');
+        const botonesEliminar = document.querySelectorAll('.delete-button');
         botonesEliminar.forEach(boton => {
             boton.addEventListener('click', (event) => {
                 const notaId = event.target.dataset.id;
@@ -43,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const eliminarNota = async (notaId) => {
         const confirmado = confirm('¿Estás seguro de que deseas eliminar esta nota?');
         if (confirmado) {
-            await fetch(`/notes/${notaId}`, { /* Consulta el ID asignado a la nota */
+            await fetch(`/notes/${notaId}`, {
                 method: 'DELETE'
             });
             obtenerNotas();

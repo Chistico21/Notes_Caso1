@@ -1,39 +1,38 @@
+/* Obtiene la info para mostrarla en el index*/
 document.addEventListener('DOMContentLoaded', () => 
     {
-    /* Datos obtenidos del forms */ 
     const formTitle = document.getElementById('form-title');
     const noteForm = document.getElementById('note-form');
     const titleInput = document.getElementById('title');
     const contentInput = document.getElementById('content');
     const tagsInput = document.getElementById('tags');
 
-    /*El params buscará el ID cuando realiza el recorrido por medio de la URL*/
+    // Obtener el ID de la nota de la URL si está presente
     const params = new URLSearchParams(window.location.search);
     const noteId = params.get('id');
 
+    // Si hay un ID de nota, cargar los detalles de la nota para editar
     if (noteId) 
         {
         formTitle.textContent = 'Modificar Nota';
 
-        fetch('/notes/detail', 
-            {
+        fetch('/notes/detail', {
             method: 'POST',
-            headers: 
-            {
+            headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({ id: noteId })
         })
         .then(response => response.json())
-        .then(note => 
-            {
+        .then(note => {
             titleInput.value = note.title;
             contentInput.value = note.content;
             tagsInput.value = note.tags.join(', ');
         })
         .catch(error => console.error('Error:', error));
     }
-    /*Boton de actualizar*/
+
+    // Manejar el envío del formulario para crear o actualizar la nota
     noteForm.addEventListener('submit', (event) => 
         {
         event.preventDefault();
@@ -45,17 +44,20 @@ document.addEventListener('DOMContentLoaded', () =>
             tags: tagsInput.value.split(',').map(tag => tag.trim())
         };
 
-        fetch(`/notes/${noteId}`, 
-            {
-            method: 'PUT',
+        const fetchOptions = 
+        {
+            method: noteId ? 'PUT' : 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(noteData)
-        })
+        };
+
+        const fetchUrl = noteId ? `/notes/${noteId}` : '/notes';
+
+        fetch(fetchUrl, fetchOptions)
         .then(response => response.json())
-        .then(() => 
-            {
+        .then(() => {
             location.assign('index.html');
         })
         .catch(error => console.error('Error:', error));

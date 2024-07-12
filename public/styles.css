@@ -1,66 +1,151 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #074c58;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .container {
-    max-width: 800px;
-    margin: 50px auto;
-    padding: 20px;
-    background: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  h1 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  input, textarea {
-    padding: 10px;
-    margin-bottom: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  textarea {
-    resize: none;
-  }
-  
-  button {
-    padding: 10px;
-    font-size: 16px;
-    background: #28a745;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background: #218838;
-  }
-  
-  .notes-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 10px;
-  }
-  
-  .note-card {
-    padding: 10px;
-    background: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    display: flex;
-    flex-direction: column;
-  }
-  
+  font-family: Arial, sans-serif;
+  background-color: #074c58;
+  margin: 0;
+  padding: 0;
+  background: url(https://www.finanzas.com/esg/wp-content/uploads/2021/03/jamie-street-a-uBpk8MFc-unsplash-1282x780.jpg) no-repeat center center fixed;
+  background-size: cover;
+}
+
+.container {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.8); /* Fondo blanco semitransparente */
+  backdrop-filter: blur(10px); /* Efecto de difuminado */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+input, textarea {
+  padding: 10px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+textarea {
+  resize: none;
+  height: 150px; /* Ajusta la altura del textarea */
+}
+
+.button-group, .button-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.button {
+  padding: 10px;
+  font-size: 16px;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  width: 48%; /* Asegura que todos los botones tengan el mismo ancho */
+}
+
+.save-button {
+  background: #09b2e6;
+}
+
+.save-button:hover {
+  background: #218838;
+}
+
+.cancel-button {
+  background: #d9534f;
+}
+
+.cancel-button:hover {
+  background: #c9302c;
+}
+
+.create-button {
+  background: #09b2e6;
+  margin-bottom: 20px; /* Espacio debajo del botón */
+  width: 100%; /* Asegura que el botón ocupe todo el contenedor */
+  text-align: center; /* Centra el texto en el botón */
+}
+
+.create-button:hover {
+  background: #218838;
+}
+
+.notes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 40px; /* Aumenta el espacio entre las notas */
+}
+
+.note-card {
+  padding: 20px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.note-card h2 {
+  margin: 0 0 10px;
+  font-size: 20px;
+}
+
+.note-card p {
+  margin: 0 0 10px;
+  font-size: 14px;
+  color: #333;
+}
+
+.note-card small {
+  display: block;
+  margin-bottom: 10px;
+  color: #777;
+}
+
+.button-container a, .button-container button {
+  flex: 1;
+  margin: 5px;
+}
+
+.note-card button {
+  padding: 10px;
+  font-size: 16px;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  width: 48%; /* Asegura que todos los botones tengan el mismo ancho */
+}
+
+.note-card .edit-button {
+  background: #09b2e6;
+}
+
+.note-card .edit-button:hover {
+  background: #218838;
+}
+
+.note-card .delete-button {
+  background: #d9534f;
+}
+
+.note-card .delete-button:hover {
+  background: #c9302c;
+}
